@@ -19,4 +19,4 @@ export class LoadUsersSuccess implements Action {
   constructor(public payload: { users: User[] }) {}
 }
 
-export type Actions = LoadUsers | LoadUsersFail | LoadUsersSuccess;
+export type UsersActions = LoadUsers | LoadUsersFail | LoadUsersSuccess;

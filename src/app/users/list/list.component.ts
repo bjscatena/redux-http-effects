@@ -11,9 +11,18 @@ import { LoadUsers } from 'src/app/store/actions';
 })
 export class ListComponent implements OnInit {
   users: User[];
+  isLoading: boolean;
+  error: any;
+
   constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
     this.store.dispatch(new LoadUsers());
+
+    this.store.select('users').subscribe(usersState => {
+      this.users = usersState.users;
+      this.isLoading = usersState.isLoading;
+      this.error = usersState.error;
+    });
   }
 }

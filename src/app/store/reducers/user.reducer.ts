@@ -1,41 +1,41 @@
 import { User } from 'src/app/models/user.model';
 
-import * as fromUsers from '../actions';
+import * as fromUser from '../actions';
 
-export interface UsersState {
-  users: User[];
+export interface UserState {
+  user: User;
   loaded: boolean;
   isLoading: boolean;
   error: string;
 }
 
-const initialState: UsersState = {
-  users: [],
+const initialState: UserState = {
+  user: null,
   loaded: false,
   isLoading: false,
   error: null
 };
 
-export function usersReducer(
+export function userReducer(
   state = initialState,
-  action: fromUsers.UsersActions
-): UsersState {
+  action: fromUser.UserActions
+): UserState {
   switch (action.type) {
-    case fromUsers.LOAD_USERS:
+    case fromUser.LOAD_USER:
       return {
         ...state,
         isLoading: true
       };
 
-    case fromUsers.LOAD_USERS_SUCCESS:
+    case fromUser.LOAD_USER_SUCCESS:
       return {
         ...state,
         loaded: true,
         isLoading: false,
-        users: [...action.payload.users]
+        user: { ...action.payload.user }
       };
 
-    case fromUsers.LOAD_USERS_FAIL:
+    case fromUser.LOAD_USER_FAIL:
       return {
         ...state,
         loaded: false,
